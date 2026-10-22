@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 
 
 @Composable
-fun DetalleProducto(
+fun DetalleProductoScreen(
     id: Int
 ){
     Text(

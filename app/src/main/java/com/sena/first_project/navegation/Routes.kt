@@ -12,3 +12,11 @@ data object Productos
 data class DetalleProducto(
     val id: Int,
 )
+
+@Serializable
+data object Perfil
+
+@Serializable
+data class Categoria(
+    val nombre: String,
+)

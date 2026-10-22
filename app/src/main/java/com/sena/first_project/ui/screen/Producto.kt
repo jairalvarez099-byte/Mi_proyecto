@@ -32,7 +32,10 @@ fun Producto(
             text = "Hola desde Producto"
         )
         Button(
-            onClick = { onirDetalleProducto(id.toInt()) }
+            onClick = {
+                val idInt = id.toIntOrNull() ?: 0
+                onirDetalleProducto(idInt)
+            }
         ) {
             Text(
                 text = "ir a detalle producto"

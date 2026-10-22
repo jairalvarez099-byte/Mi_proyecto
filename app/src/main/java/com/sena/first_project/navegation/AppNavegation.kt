@@ -4,7 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.sena.first_project.ui.screen.CategoriaScreen
+import com.sena.first_project.ui.screen.DetalleProductoScreen
 import com.sena.first_project.ui.screen.Home
+import com.sena.first_project.ui.screen.PerfilScreen
 import com.sena.first_project.ui.screen.Producto
 
 @Composable
@@ -18,6 +22,12 @@ fun AppNavegation(){
             Home(
                 onirProducto = {
                     navController.navigate(Productos)
+                },
+                onirPerfil = {
+                    navController.navigate(Perfil)
+                },
+                onirCategoria = { nombre ->
+                    navController.navigate(Categoria(nombre))
                 }
             )
 
@@ -32,9 +42,26 @@ fun AppNavegation(){
                 }
             )
         }
-        composable<DetalleProducto>{dato->
-            DetalleProducto(
-                id = dato.arguments?.getInt("id") ?: 0
+        composable<DetalleProducto>{ backStackEntry ->
+            val datos = backStackEntry.toRoute<DetalleProducto>()
+            DetalleProductoScreen(
+                id = datos.id
+            )
+        }
+        composable<Perfil>{
+            PerfilScreen(
+                onVolverHome = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable<Categoria>{ backStackEntry ->
+            val datos = backStackEntry.toRoute<Categoria>()
+            CategoriaScreen(
+                nombre = datos.nombre,
+                onVolverHome = {
+                    navController.popBackStack()
+                }
             )
         }
     }

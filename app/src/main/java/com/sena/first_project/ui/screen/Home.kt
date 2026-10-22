@@ -10,6 +10,8 @@ import androidx.compose.ui.Modifier
 @Composable
 fun Home(
     onirProducto: () -> Unit,
+    onirPerfil: () -> Unit,
+    onirCategoria: (String) -> Unit
 ){
     Column(
         modifier = Modifier.fillMaxSize()
@@ -22,6 +24,20 @@ fun Home(
         ) {
             Text(
                 text = "ir a producto"
+            )
+        }
+        Button(
+            onClick = onirPerfil
+        ) {
+            Text(
+                text = "ir a perfil"
+            )
+        }
+        Button(
+            onClick = { onirCategoria("Tecnología") }
+        ) {
+            Text(
+                text = "ir a categoría Tecnología"
             )
         }
     }
